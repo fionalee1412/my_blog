@@ -1,78 +1,79 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>{{ page.title }}</title>
-        <meta name="viewport" content="width=device-width">
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <meta http-equiv="Content-Language" content="fr"> 
-        <meta name="google-site-verification" content="dP8o9sKNCibdnxzpaDA0blhIHptcacqhvKiVzYIdGME" />
-        <meta name="description" content="Welcome to my blog. My name is Gilles Bertaux, I live in Paris, I am a Digital Planner.">
-        <meta name="viewport" content="width=device-width" />
-        <meta property='og:locale' content='fr_FR'/>
-        <meta property='og:title' content='Gilles Bertaux Blog | Digital Planner & Étudiant HETIC'/>
-        <meta property='og:description' content='Welcome to my blog. My name is Gilles Bertaux, I live in Paris, I am a Digital Planner.'/>
-        <meta property='og:url' content='http://blog.gillesbertaux.com'/>
-        <meta property='og:site_name' content='Gilles Bertaux Blog | Digital Planner & Étudiant HETIC'/>
-        <meta property='og:type' content='website'/>
-        <link rel="profile" href="http://gmpg.org/xfn/11" />
-        <link rel="author" href="https://plus.google.com/u/0/+GillesBertaux/" />
-        <link rel="icon" href="/img/favicon.ico" type="image/x-icon" />
-        <link href='http://fonts.googleapis.com/css?family=Merriweather:400italic,400' rel='stylesheet' type='text/css'>
-        <link href='http://fonts.googleapis.com/css?family=Merriweather+Sans:700' rel='stylesheet' type='text/css'>
-        <link rel="stylesheet" href="{{ site.baseurl }}css/syntax.css">
-        <link rel="stylesheet" href="{{ site.baseurl }}css/main.css">
-    </head>
+---
+layout: default
+---
 
-    <body>
+<link rel="stylesheet" href="/js/prettify/prettify.css" />
+<style type="text/css">
+    body { background:#e8e8e8; }
+    @media screen and (max-width: 750px){
+        body { background:#fff; }
+    }
+    @media screen and (max-width: 1020px){
+        body { background:#fff; }
+    }
+</style>
 
-    <div id="progressbar"></div>
+<div id="content">
+    <div class="entry">
+        <h1 class="entry-title"><a href="{{ page.url }}" title="{{ page.title }}">{{ page.title }}</a></h1>
+        <p class="entry-date">{{ page.date|date:"%Y-%m-%d" }}</p>
+        {{ content }}
 
-    <main class="wrapper">
+        <div id="disqus_container">
+            <div style="margin-bottom:20px" class="right">
+                <script type="text/javascript" charset="utf-8">
+                (function(){
+                  var _w = 86 , _h = 16;
+                  var param = {
+                    url:location.href,
+                    type:'6',
+                    count:'', /**是否显示分享数，1显示(可选)*/
+                    appkey:'', /**您申请的应用appkey,显示分享来源(可选)*/
+                    title:'', /**分享的文字内容(可选，默认为所在页面的title)*/
+                    pic:'', /**分享图片的路径(可选)*/
+                    ralateUid:'1855270953', /**关联用户的UID，分享微博会@该用户(可选)*/
+                    language:'zh_cn', /**设置语言，zh_cn|zh_tw(可选)*/
+                    rnd:new Date().valueOf()
+                  }
+                  var temp = [];
+                  for( var p in param ){
+                    temp.push(p + '=' + encodeURIComponent( param[p] || '' ) )
+                  }
+                  document.write('<iframe allowTransparency="true" frameborder="0" scrolling="no" src="http://hits.sinajs.cn/A1/weiboshare.html?' + temp.join('&') + '" width="'+ _w+'" height="'+_h+'"></iframe>')
+                })()
+                </script>
+            </div>
+            <a href="#" class="comment" onclick="return false;">点击查看评论</a>
+            <div id="disqus_thread"></div>
+        </div>
+    </div>
 
-    	<div class="wrapper-nav">
+    <div class="sidenav">
+        <iframe width="100%" height="75" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=75&fansRow=2&ptype=1&speed=0&skin=5&isTitle=0&noborder=0&isWeibo=0&isFans=0&uid=1855270953&verifier=375b89d6&dpc=1"></iframe>
+    </div>
 
-	    	<ul class="nav">
-	    		{% if page.previous.url %} 
-	    		<li><a href="{{ site.baseurl }}{{page.previous.url}}">&laquo; Previous post</a></li>
-	   			{% endif %} 
-	   			<li><a href="{{ site.baseurl }}">Home</a></li>
-	   			{% if page.next.url %} 
-	   			<li><a href="{{ site.baseurl }}{{page.next.url}}">Next post &raquo;</a></li>
-	   			{% endif %} 
-	   		</ul>
+    <div class="sidenav">
+        <h2>Blog</h2>
+        <ul class="artical-list">
+        {% for post in site.categories.blog%}
+            <li><a href="{{ post.url }}">{{ post.title }}</a></li>
+        {% endfor %}
+        </ul>
 
-   		</div>
+        <h2>Opinion</h2>
+        <ul class="artical-list">
+        {% for post in site.categories.opinion%}
+            <li><a href="{{ post.url }}">{{ post.title }}</a></li>
+        {% endfor %}
+        </ul>
 
-   		<hr>
+        <h2>Project</h2>
+        <ul class="artical-list">
+        {% for post in site.categories.project%}
+            <li><a href="{{ post.url }}">{{ post.title }}</a></li>
+        {% endfor %}
+        </ul>
+    </div>
+</div>
 
-		<p class="meta">{{ page.date | date_to_string }}</p>
-
-		<h1 class="post-title-single">{{ page.title }}</h1>
-
-		<article class="post-content">
-		{{ content }}
-		</artile>
-
-		<div class="share">
-
-		<a href="https://twitter.com/share" class="twitter-share-button" data-via="Gilles_Bertaux" data-dnt="true">Tweet</a>
-		<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-		<a href="https://news.ycombinator.com/submit" class="hn-button" data-count="horizontal" data-style="twitter">Vote on Hacker News</a>
-		<script type="text/javascript">var HN=[];HN.factory=function(e){return function(){HN.push([e].concat(Array.prototype.slice.call(arguments,0)))};},HN.on=HN.factory("on"),HN.once=HN.factory("once"),HN.off=HN.factory("off"),HN.emit=HN.factory("emit"),HN.load=function(){var e="hn-button.js";if(document.getElementById(e))return;var t=document.createElement("script");t.id=e,t.src="//hn-button.herokuapp.com/hn-button.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(t,n)},HN.load();</script>
-
-		</div>
-
-		<hr>
-
-		{% include footer.html %}
-
-	</main>
-
-	</body>
-	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
-    <script src='{{ site.baseurl }}javascripts/main.min.js'></script>
-</html>
-
-
+<script src="/js/post.js" type="text/javascript"></script>
